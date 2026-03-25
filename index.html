@@ -1,0 +1,2189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aashray Infra</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-900: #16324f;
+      --primary-700: #245d7a;
+      --primary-500: #2f9fb3;
+      --accent-500: #46c3a5;
+      --accent-300: #9de4d4;
+      --text-900: #1b2a3a;
+      --text-700: #41596f;
+      --surface-100: #f5fbfb;
+      --surface-200: #ecf7f6;
+      --surface-300: #e3f1f2;
+      --card-border: rgba(22, 50, 79, 0.1);
+      --card-shadow: rgba(22, 50, 79, 0.1);
+    }
+
+            /* Scroll animation classes */
+            .scroll-animate {
+              opacity: 0;
+              transform: translateY(40px);
+              transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+            }
+            .scroll-animate.visible {
+              opacity: 1;
+              transform: none;
+            }
+            .scroll-animate-left {
+              opacity: 0;
+              transform: translateX(-40px);
+              transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+            }
+            .scroll-animate-left.visible {
+              opacity: 1;
+              transform: none;
+            }
+            .scroll-animate-right {
+              opacity: 0;
+              transform: translateX(40px);
+              transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+            }
+            .scroll-animate-right.visible {
+              opacity: 1;
+              transform: none;
+            }
+            .scroll-animate-zoom {
+              opacity: 0;
+              transform: scale(0.92);
+              transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+            }
+            .scroll-animate-zoom.visible {
+              opacity: 1;
+              transform: scale(1);
+            }
+        /* Animated Counter Section */
+        .stats-section {
+          background: linear-gradient(90deg, #e0f7fa 0%, #f8fdff 100%);
+          padding: 44px 0 28px 0;
+          margin-bottom: 0;
+        }
+        .stat-box {
+          text-align: center;
+          padding: 18px 0;
+        }
+        .stat-number {
+          font-size: 2.3rem;
+          font-weight: 700;
+          color: #0077b6;
+          margin-bottom: 4px;
+          letter-spacing: 1px;
+          transition: color 0.3s;
+        }
+        .stat-label {
+          font-size: 1.05rem;
+          color: #0d1b2a;
+          font-weight: 500;
+          letter-spacing: 0.2px;
+        }
+
+        /* Hero animated gradient */
+        .hero {
+          position: relative;
+          overflow: hidden;
+        }
+        .hero::before {
+          content: "";
+          position: absolute;
+          top: 0; left: 0; right: 0; bottom: 0;
+          z-index: 0;
+          background: linear-gradient(120deg, #00b4d8 0%, #0077b6 100%);
+          opacity: 0.18;
+          animation: heroBgMove 8s ease-in-out infinite alternate;
+        }
+        @keyframes heroBgMove {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 100% 50%; }
+        }
+        .hero > .container {
+          position: relative;
+          z-index: 1;
+        }
+
+        /* Floating button pulse */
+        .floating-whatsapp, .floating-call {
+          animation: pulseBtn 1.8s infinite;
+        }
+        @keyframes pulseBtn {
+          0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.4), 0 12px 26px rgba(37,211,102,0.4); }
+          70% { box-shadow: 0 0 0 16px rgba(37,211,102,0.0), 0 12px 26px rgba(37,211,102,0.4); }
+          100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.4), 0 12px 26px rgba(37,211,102,0.4); }
+        }
+        .floating-call {
+          animation: pulseBtnCall 1.8s infinite;
+        }
+        @keyframes pulseBtnCall {
+          0% { box-shadow: 0 0 0 0 rgba(0,119,182,0.4), 0 12px 26px rgba(0,119,182,0.4); }
+          70% { box-shadow: 0 0 0 16px rgba(0,119,182,0.0), 0 12px 26px rgba(0,119,182,0.4); }
+          100% { box-shadow: 0 0 0 0 rgba(0,119,182,0.4), 0 12px 26px rgba(0,119,182,0.4); }
+        }
+
+        /* Shine animation for service icons */
+        .service-icon {
+          position: relative;
+          overflow: hidden;
+        }
+        .service-icon::after {
+          content: "";
+          position: absolute;
+          top: -60%;
+          left: -60%;
+          width: 180%;
+          height: 180%;
+          background: linear-gradient(120deg, rgba(255,255,255,0.0) 60%, rgba(255,255,255,0.7) 80%, rgba(255,255,255,0.0) 100%);
+          transform: rotate(25deg);
+          pointer-events: none;
+          animation: shineIcon 3.5s linear infinite;
+        }
+        @keyframes shineIcon {
+          0% { left: -60%; }
+          100% { left: 100%; }
+        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* Fade-in animation for sections */
+    .fade-section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+    }
+    .fade-section.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Card hover bounce */
+    .service-card, .project-card, .review-card {
+      transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s;
+    }
+    .service-card:hover, .project-card:hover, .review-card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 16px 36px rgba(13, 27, 42, 0.22);
+    }
+
+    /* Section heading underline animation */
+    .section-heading {
+      position: relative;
+      display: inline-block;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: #0d1b2a;
+      padding-bottom: 12px;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #0d1b2a, #0077b6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      overflow: hidden;
+    }
+    .section-heading::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      bottom: 0;
+      width: 82px;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #00b4d8, #0077b6);
+      box-shadow: 0 6px 14px rgba(0, 180, 216, 0.35);
+      transition: transform 0.7s cubic-bezier(.34,1.56,.64,1);
+    }
+    .section-heading.visible::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    /* Gallery image fade-in */
+    .gallery img {
+      opacity: 0;
+      transform: scale(0.96);
+      transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+    .gallery img.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .navbar {
+      background: linear-gradient(90deg, rgba(13, 27, 42, 0.95), rgba(20, 44, 74, 0.92));
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+      padding: 12px 0;
+      top: 42px;
+      z-index: 1030;
+      transition: top 0.28s ease;
+    }
+
+    .top-contact-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      color: #0d1b2a;
+      z-index: 1035;
+      border-bottom: 1px solid rgba(13, 27, 42, 0.1);
+      box-shadow: 0 4px 14px rgba(13, 27, 42, 0.08);
+      transition: transform 0.28s ease;
+    }
+
+    .top-contact-inner {
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .top-contact-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .top-contact-left a {
+      color: #0f2942;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .top-contact-left a i {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      background: #e8f7ff;
+      color: #0077b6;
+      border: 1px solid rgba(0, 119, 182, 0.18);
+      flex-shrink: 0;
+    }
+
+    .top-contact-left a:hover {
+      color: #0077b6;
+    }
+
+    .top-social {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .top-social a {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      transition: transform 0.25s ease;
+    }
+
+    .top-social a:hover {
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    @media (min-width: 992px) {
+      body.topbar-hidden .top-contact-bar {
+        transform: translateY(-100%);
+      }
+
+      body.topbar-hidden .navbar {
+        top: 0;
+      }
+    }
+
+    .navbar-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      color: #ffffff !important;
+      max-width: calc(100% - 96px);
+    }
+
+    .brand-logo-wrap {
+      width: 86px;
+      height: 86px;
+      border-radius: 14px;
+      /* background: rgba(255, 255, 255, 0.95); */
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      /* box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2); */
+      flex-shrink: 0;
+    }
+
+    .brand-logo-wrap img {
+      width: 146px;
+      height: 146px;
+      object-fit: contain;
+      display: block;
+      filter: contrast(1.08) saturate(1.08);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      min-width: 0;
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      letter-spacing: 0.3px;
+      color: #ffffff;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-subtitle {
+      font-size: 0.7rem;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #9adfff;
+      font-weight: 600;
+    }
+
+    .nav-link {
+      color: #e6f1ff !important;
+      margin-left: 14px;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: #00d4ff;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #00d4ff !important;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      margin-left: 18px;
+      background: linear-gradient(135deg, #00b4d8, #0096c7);
+      color: #fff !important;
+      border-radius: 999px;
+      padding: 8px 16px !important;
+    }
+
+    .nav-cta::after {
+      display: none;
+    }
+
+    .nav-cta:hover {
+      color: #fff !important;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0, 180, 216, 0.35);
+    }
+
+    @media (max-width: 991px) {
+      .top-contact-bar {
+        display: none;
+      }
+
+      .navbar {
+        top: 0;
+      }
+
+      .brand-logo-wrap {
+        width: 88px;
+        height: 88px;
+        border-radius: 12px;
+        margin-left: 14px;
+      }
+
+       .brand-logo-wrap img {
+      width: 144px;
+      height: 144px;
+      object-fit: contain;
+      display: block;
+    }
+
+      .brand-title {
+        font-size: 0.95rem;
+      }
+
+      .brand-subtitle {
+        font-size: 0.58rem;
+        letter-spacing: 0.5px;
+      }
+
+      .nav-link {
+        margin-left: 0;
+        margin-top: 8px;
+      }
+
+      .nav-cta {
+        display: inline-block;
+        margin-left: 0;
+        margin-top: 12px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .navbar {
+        padding: 10px 0;
+      }
+
+      .navbar-brand {
+        gap: 0;
+        max-width: 82px;
+      }
+
+      .brand-logo-wrap {
+        width: 80px;
+        height: 80px;
+        border-radius: 12px;
+      }
+
+      .brand-logo-wrap img {
+        width: 126px;
+        height: 126px;
+      }
+
+      .brand-text,
+      .brand-subtitle {
+        display: none;
+      }
+    }
+
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 50px;
+      font-weight: 600;
+    }
+
+    .btn-main {
+      background: #00b4d8;
+      color: #fff;
+      border-radius: 30px;
+      padding: 10px 25px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-heading {
+      position: relative;
+      display: inline-block;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: #0d1b2a;
+      padding-bottom: 12px;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #0d1b2a, #0077b6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-heading::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      width: 82px;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #00b4d8, #0077b6);
+      box-shadow: 0 6px 14px rgba(0, 180, 216, 0.35);
+    }
+
+    .section-heading-center {
+      display: table;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #about {
+      background: linear-gradient(180deg, #f9fcff 0%, #eef5ff 100%);
+    }
+
+    .about-card {
+      background: #ffffff;
+      border: 1px solid rgba(13, 27, 42, 0.08);
+      border-radius: 18px;
+      box-shadow: 0 10px 28px rgba(13, 27, 42, 0.08);
+      padding: 28px;
+      height: 100%;
+    }
+
+    .about-tagline {
+      color: #0077b6;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .about-text {
+      color: #475569;
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+
+    .about-points {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .about-points li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      color: #1e293b;
+      font-weight: 500;
+    }
+
+    .about-points li i {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #caf0f8, #90e0ef);
+      color: #0d1b2a;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+
+    .about-highlight {
+      background: linear-gradient(145deg, #0d1b2a, #1f3a5b);
+      color: #e8f4ff;
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 14px 30px rgba(13, 27, 42, 0.22);
+      height: 100%;
+    }
+
+    .about-highlight h5 {
+      color: #ffffff;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .about-highlight p {
+      margin-bottom: 0;
+      line-height: 1.75;
+    }
+
+    .card {
+      border: none;
+      border-radius: 15px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
+    }
+
+    #services {
+      background: linear-gradient(180deg, #f3f8ff 0%, #edf7fc 100%);
+    }
+
+    .service-card {
+      border: none;
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(13, 27, 42, 0.08);
+      transition: 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 14px 36px rgba(13, 27, 42, 0.16);
+    }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 14px;
+      color: #0d1b2a;
+    }
+
+    .icon-blue {
+      background: linear-gradient(135deg, #caf0f8, #90e0ef);
+    }
+
+    .icon-gold {
+      background: linear-gradient(135deg, #ffefba, #ffd166);
+    }
+
+    .icon-green {
+      background: linear-gradient(135deg, #c7f9cc, #80ed99);
+    }
+
+    .icon-purple {
+      background: linear-gradient(135deg, #e0c3fc, #c2a8ff);
+    }
+
+    .icon-cyan {
+      background: linear-gradient(135deg, #d0f4ff, #8ecae6);
+    }
+
+    .service-title {
+      color: #0d1b2a;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .service-text {
+      color: #495057;
+      margin-bottom: 0;
+      line-height: 1.7;
+    }
+
+    #projects {
+      background: linear-gradient(180deg, #f3f8ff 0%, #edf7fc 100%);
+    }
+
+    .project-card {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      height: 300px;
+      box-shadow: 0 10px 28px rgba(13, 27, 42, 0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .project-card img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .project-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(13, 27, 42, 0) 0%, rgba(13, 27, 42, 0.85) 100%);
+      z-index: 1;
+    }
+
+    .project-content {
+      position: relative;
+      z-index: 2;
+      padding: 20px;
+      color: white;
+    }
+
+    .project-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-size: 1.15rem;
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      margin-bottom: 0;
+      line-height: 1.5;
+      opacity: 0.92;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 36px rgba(13, 27, 42, 0.2);
+    }
+
+    .project-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      transition: 0.3s;
+      cursor: zoom-in;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    #galleryPreviewModal .modal-content {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+
+    #galleryPreviewModal .btn-close {
+      background-color: #ffffff;
+      opacity: 1;
+      border-radius: 50%;
+      padding: 0.6rem;
+    }
+
+    .gallery-modal-image {
+      width: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    #reviews {
+      background: linear-gradient(180deg, #f8fbff 0%, #edf6ff 100%);
+    }
+
+    .review-card {
+      background: #ffffff;
+      border: 1px solid rgba(13, 27, 42, 0.08);
+      border-radius: 16px;
+      padding: 24px;
+      height: 100%;
+      box-shadow: 0 10px 24px rgba(13, 27, 42, 0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(13, 27, 42, 0.14);
+    }
+
+    .review-stars {
+      color: #f9b233;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .review-text {
+      color: #475569;
+      line-height: 1.75;
+      margin-bottom: 16px;
+      font-size: 0.96rem;
+    }
+
+    .review-name {
+      margin-bottom: 2px;
+      color: #0d1b2a;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .review-role {
+      color: #0077b6;
+      font-size: 0.85rem;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    #faq {
+      background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+    }
+
+    .faq-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .faq-wrap .accordion-item {
+      border: 1px solid rgba(13, 27, 42, 0.09);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      box-shadow: 0 8px 20px rgba(13, 27, 42, 0.06);
+    }
+
+    .faq-wrap .accordion-button {
+      font-weight: 600;
+      color: #0d1b2a;
+      background: #ffffff;
+      padding: 16px 18px;
+    }
+
+    .faq-wrap .accordion-button:not(.collapsed) {
+      color: #0d1b2a;
+      background: #e8f7ff;
+      box-shadow: none;
+    }
+
+    .faq-wrap .accordion-button:focus {
+      box-shadow: 0 0 0 0.2rem rgba(0, 180, 216, 0.2);
+      border-color: #00b4d8;
+    }
+
+    .faq-wrap .accordion-body {
+      color: #475569;
+      line-height: 1.75;
+      background: #ffffff;
+    }
+
+    #contact {
+      background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+    }
+
+    .contact-box {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 18px;
+      border: 1px solid rgba(13, 27, 42, 0.08);
+      box-shadow: 0 10px 28px rgba(13, 27, 42, 0.08);
+      height: 100%;
+    }
+
+    .contact-title {
+      color: #0d1b2a;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    .contact-item i {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #0d1b2a;
+      background: linear-gradient(135deg, #caf0f8, #90e0ef);
+      flex-shrink: 0;
+    }
+
+    .contact-map {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(13, 27, 42, 0.1);
+      margin-top: 18px;
+    }
+
+    .contact-map iframe {
+      width: 100%;
+      height: 220px;
+      border: 0;
+      display: block;
+    }
+
+    .contact-box .form-control {
+      border-radius: 12px;
+      border: 1px solid #dbe4f0;
+      padding: 12px 14px;
+    }
+
+    .contact-box .form-control:focus {
+      box-shadow: 0 0 0 0.2rem rgba(0, 180, 216, 0.2);
+      border-color: #00b4d8;
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25d366;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      text-decoration: none;
+      box-shadow: 0 12px 26px rgba(37, 211, 102, 0.4);
+      z-index: 1100;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .floating-call {
+      position: fixed;
+      right: 22px;
+      bottom: 92px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #0077b6;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      text-decoration: none;
+      box-shadow: 0 12px 26px rgba(0, 119, 182, 0.4);
+      z-index: 1100;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .floating-call:hover {
+      color: #fff;
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 16px 30px rgba(0, 119, 182, 0.5);
+    }
+
+    .floating-whatsapp:hover {
+      color: #fff;
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 16px 30px rgba(37, 211, 102, 0.5);
+    }
+
+    @media (max-width: 576px) {
+      .floating-call {
+        right: 16px;
+        bottom: 84px;
+        width: 54px;
+        height: 54px;
+        font-size: 26px;
+      }
+
+      .floating-whatsapp {
+        right: 16px;
+        bottom: 16px;
+        width: 54px;
+        height: 54px;
+        font-size: 28px;
+      }
+    }
+
+    footer {
+      background: #0d1b2a;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .rera-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #ffd700, #ffed4e);
+      color: #0d1b2a;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin: 8px 0;
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.35);
+      letter-spacing: 0.5px;
+    }
+
+    .rera-label {
+      font-size: 0.75rem;
+      display: block;
+      margin-bottom: 2px;
+      opacity: 0.9;
+    }
+
+    .footer-social {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 18px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .footer-social a:hover {
+      transform: translateY(-3px);
+      color: #ffffff;
+    }
+
+    .social-facebook {
+      background: #1877f2;
+      box-shadow: 0 8px 18px rgba(24, 119, 242, 0.35);
+    }
+
+    .social-instagram {
+      background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+      box-shadow: 0 8px 18px rgba(221, 42, 123, 0.35);
+    }
+
+    .social-web {
+      background: #00a6c7;
+      box-shadow: 0 8px 18px rgba(0, 166, 199, 0.35);
+    }
+
+    .navbar-rera {
+      display: inline-block;
+      background: linear-gradient(135deg, #ffd700, #ffed4e);
+      color: #0d1b2a;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.7rem;
+      margin-left: 12px;
+      letter-spacing: 0.3px;
+      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    }
+
+    @media (max-width: 991px) {
+      .navbar-rera {
+        display: block;
+        margin-left: 0;
+        margin-top: 8px;
+      }
+    }
+
+    /* Fresh color combination overrides */
+    .navbar {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(22, 50, 79, 0.12);
+      box-shadow: 0 8px 22px rgba(22, 50, 79, 0.12);
+    }
+
+    .nav-link {
+      color: var(--text-900) !important;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-500) !important;
+    }
+
+    .top-contact-bar {
+      background: #ffffff;
+      color: var(--text-900);
+      border-bottom: 1px solid var(--card-border);
+      box-shadow: 0 4px 14px var(--card-shadow);
+    }
+
+    .top-contact-left a,
+    .about-points li,
+    .service-title,
+    .contact-title,
+    .review-name,
+    .faq-wrap .accordion-button,
+    .stat-label {
+      color: var(--text-900);
+    }
+
+    .top-contact-left a i,
+    .contact-item i,
+    .about-points li i,
+    .icon-blue,
+    .icon-cyan {
+      background: linear-gradient(135deg, #d9f3f0, var(--accent-300));
+      color: var(--primary-700);
+      border-color: rgba(47, 159, 179, 0.2);
+    }
+
+    .top-contact-left a:hover,
+    .about-tagline,
+    .review-role,
+    .stat-number {
+      color: var(--primary-500);
+    }
+
+    .brand-subtitle {
+      color: #bceff7;
+    }
+
+    .nav-link::after,
+    .nav-link:hover {
+      color: #7ae5df !important;
+      background: #7ae5df;
+    }
+
+    .nav-cta,
+    .btn-main {
+      background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+      color: #ffffff;
+    }
+
+    .section-heading {
+      color: var(--primary-900);
+      background: linear-gradient(90deg, var(--primary-900), var(--primary-500));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-heading::after {
+      background: linear-gradient(90deg, var(--accent-500), var(--primary-500));
+      box-shadow: 0 6px 14px rgba(70, 195, 165, 0.35);
+    }
+
+    #about,
+    #faq,
+    #contact,
+    #reviews {
+      background: linear-gradient(180deg, var(--surface-100) 0%, var(--surface-200) 100%);
+    }
+
+    #services,
+    #projects {
+      background: linear-gradient(180deg, var(--surface-200) 0%, var(--surface-300) 100%);
+    }
+
+    .stats-section {
+      background: linear-gradient(90deg, #def4f2 0%, #f7fcfc 100%);
+    }
+
+    .about-card,
+    .service-card,
+    .review-card,
+    .contact-box,
+    .faq-wrap .accordion-item {
+      border: 1px solid var(--card-border);
+      box-shadow: 0 10px 28px var(--card-shadow);
+    }
+
+    .about-highlight {
+      background: linear-gradient(145deg, var(--primary-900), var(--primary-700));
+      color: #e9fbff;
+    }
+
+    .service-text,
+    .review-text,
+    .faq-wrap .accordion-body,
+    .contact-item,
+    .about-text {
+      color: var(--text-700);
+    }
+
+    .faq-wrap .accordion-button:not(.collapsed) {
+      background: #e2f5f3;
+      color: var(--text-900);
+    }
+
+    .faq-wrap .accordion-button:focus,
+    .contact-box .form-control:focus {
+      border-color: var(--primary-500);
+      box-shadow: 0 0 0 0.2rem rgba(47, 159, 179, 0.2);
+    }
+
+    .floating-call {
+      background: var(--primary-500);
+      box-shadow: 0 12px 26px rgba(47, 159, 179, 0.4);
+    }
+
+    .floating-call:hover {
+      box-shadow: 0 16px 30px rgba(47, 159, 179, 0.5);
+    }
+
+    footer {
+      background: var(--primary-900);
+    }
+
+    .social-web {
+      background: var(--primary-500);
+      box-shadow: 0 8px 18px rgba(47, 159, 179, 0.35);
+    }
+
+    /* Hero premium upgrade */
+    .hero {
+      min-height: 100vh;
+      padding-top: 120px;
+      padding-bottom: 60px;
+    }
+
+    @media (min-width: 992px) {
+      .hero {
+        padding-top: 150px;
+      }
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      color: #eaffff;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4.2vw, 3.6rem);
+      line-height: 1.2;
+      margin-top: 18px;
+      margin-bottom: 10px;
+      text-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero-subtext {
+      color: #eaf8ff;
+      max-width: 620px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .hero-subtext-mobile {
+      display: none;
+      color: #eaf8ff;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin-top: 10px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .btn-outline-hero {
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      color: #ffffff;
+      border-radius: 30px;
+      padding: 10px 22px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.25s ease;
+      backdrop-filter: blur(3px);
+    }
+
+    .btn-outline-hero:hover {
+      color: var(--primary-900);
+      background: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .hero-mini-stats {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .hero-mini-stats .item {
+      color: #d8f8ff;
+      font-size: 0.9rem;
+    }
+
+    .hero-mini-stats .item strong {
+      display: block;
+      color: #ffffff;
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+
+    .hero-highlight-card {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 18px;
+      padding: 22px;
+      backdrop-filter: blur(7px);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.2);
+      text-align: left;
+      color: #ebfbff;
+    }
+
+    .hero-highlight-card h5 {
+      color: #ffffff;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    .hero-highlight-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .hero-highlight-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .hero-highlight-list i {
+      color: #7ae5df;
+      font-size: 1rem;
+    }
+
+    .hero-scroll-indicator {
+      margin-top: 18px;
+      color: #cfefff;
+      font-size: 0.82rem;
+      letter-spacing: 0.3px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.9;
+      animation: bounceDown 1.8s infinite;
+    }
+
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(4px); }
+    }
+
+    /* Global scroll progress and back to top */
+    #scrollProgress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 0;
+      z-index: 2000;
+      background: linear-gradient(90deg, var(--accent-500), var(--primary-500));
+      box-shadow: 0 3px 10px rgba(70, 195, 165, 0.4);
+      transition: width 0.1s linear;
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 22px;
+      bottom: 162px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: #ffffff;
+      color: var(--primary-700);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 10px 24px rgba(22, 50, 79, 0.2);
+      z-index: 1100;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      background: var(--primary-500);
+      color: #ffffff;
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 991px) {
+      .hero {
+        min-height: auto;
+        padding-top: 95px;
+        padding-bottom: 50px;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.45rem, 6vw, 2.05rem);
+        margin-top: 12px;
+      }
+
+      .hero-pill {
+        font-size: 0.74rem;
+        padding: 6px 12px;
+      }
+
+      .hero-subtext {
+        display: none;
+      }
+
+      .hero-subtext-mobile {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 520px;
+      }
+
+      .hero-cta-group {
+        justify-content: center;
+        margin-top: 12px;
+      }
+
+      .hero-cta-group .btn-outline-hero,
+      .hero-mini-stats,
+      .hero-highlight-card {
+        display: none;
+      }
+
+      .hero-scroll-indicator {
+        display: inline-flex;
+        margin-top: 14px;
+        font-size: 0.78rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .back-to-top {
+        right: 16px;
+        bottom: 142px;
+        width: 46px;
+        height: 46px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="scrollProgress" aria-hidden="true"></div>
+
+<div class="top-contact-bar">
+  <div class="container top-contact-inner">
+    <div class="top-contact-left">
+      <a href="mailto:aashraygroup0077@gmail.com" aria-label="Email us"><i class="bi bi-envelope-fill"></i> aashraygroup0077@gmail.com</a>
+      <a href="tel:+918390700030" aria-label="Call us"><i class="bi bi-telephone-fill"></i> +91 83907 00030</a>
+    </div>
+    <div class="top-social">
+      <a href="https://www.facebook.com/aashraygroup0077" target="_blank" rel="noopener noreferrer" class="social-facebook" aria-label="Facebook" title="Facebook">
+        <i class="bi bi-facebook"></i>
+      </a>
+      <a href="https://www.instagram.com/aashraygroupngp/" target="_blank" rel="noopener noreferrer" class="social-instagram" aria-label="Instagram" title="Instagram">
+        <i class="bi bi-instagram"></i>
+      </a>
+      <a href="https://www.aashraygroupnagpur.com/" target="_blank" rel="noopener noreferrer" class="social-web" aria-label="Website" title="Website">
+        <i class="bi bi-globe2"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#home" aria-label="Aashray Infra Home">
+      <span class="brand-logo-wrap">
+        <img src="logo3.png" alt="Aashray Infra Logo">
+      </span>
+      <!-- <span class="brand-text">
+        <span class="brand-title">Aashray Infra</span>
+        <span class="brand-subtitle">Dependable Service</span>
+      </span> -->
+    </a>
+
+    <button class="navbar-toggler bg-light" data-bs-toggle="collapse" data-bs-target="#menu" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="menu">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Get Quote</a></li>
+        <li class="nav-item"><span class="navbar-rera">RERA: A50500037497</span></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7 text-center text-lg-start scroll-animate-left">
+        <span class="hero-pill"><i class="bi bi-patch-check-fill"></i> RERA Registered & Trusted in Nagpur</span>
+        <h1>Build Your Future With Premium Real Estate Choices</h1>
+        <p class="hero-subtext mt-3">
+          Aashray Infra delivers legally clear plots and quality developments with complete transparency,
+          helping families and investors secure long-term value with confidence.
+        </p>
+        <p class="hero-subtext-mobile">
+          Legally clear plots and trusted guidance in Nagpur for safe, value-driven property investment.
+        </p>
+        <div class="hero-cta-group">
+          <a href="#contact" class="btn btn-main">Get Free Consultation</a>
+          <a href="#projects" class="btn-outline-hero">Explore Projects</a>
+        </div>
+        <div class="hero-mini-stats">
+          <div class="item"><strong>10+</strong> Years in Market</div>
+          <div class="item"><strong>250+</strong> Happy Buyers</div>
+          <div class="item"><strong>RERA</strong> A50500037497</div>
+        </div>
+        <a class="hero-scroll-indicator" href="#about" aria-label="Scroll to About section">
+          <i class="bi bi-mouse"></i> Scroll to discover more
+        </a>
+      </div>
+
+      <div class="col-lg-5 scroll-animate-right">
+        <div class="hero-highlight-card">
+          <h5>Why Clients Choose Us</h5>
+          <ul class="hero-highlight-list">
+            <li><i class="bi bi-check-circle-fill"></i> Clear legal process and documentation</li>
+            <li><i class="bi bi-check-circle-fill"></i> Prime growth locations in Nagpur</li>
+            <li><i class="bi bi-check-circle-fill"></i> Transparent support from visit to booking</li>
+            <li><i class="bi bi-check-circle-fill"></i> Trusted team for residential and commercial needs</li>
+          </ul>
+          <a href="tel:+918390700030" class="btn btn-main mt-2">Call for Site Visit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="section fade-section" id="about">
+  <div class="container">
+    <h2 class="section-heading section-heading-center">About Us</h2>
+
+    <!-- Animated Stats Section -->
+    <div class="row stats-section mb-4">
+      <div class="col-6 col-md-4 stat-box">
+        <div class="stat-number" data-count="10">0</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="col-6 col-md-4 stat-box">
+        <div class="stat-number" data-count="250">0</div>
+        <div class="stat-label">Happy Clients</div>
+      </div>
+      <div class="col-12 col-md-4 stat-box">
+        <div class="stat-number" data-count="15">0</div>
+        <div class="stat-label">Projects Completed</div>
+      </div>
+    </div>
+
+    <div class="row g-4 mt-3 align-items-stretch">
+      <div class="col-lg-7 scroll-animate-left">
+        <div class="about-card">
+          <h5 class="about-tagline">Dependable Service. Reliable Results.</h5>
+          <p class="about-text mb-4">
+            Aashray Infra is a trusted real estate development firm based in Nagpur, specializing in well-planned
+            residential and commercial properties. With a strong focus on quality, transparency, and long-term value,
+            we develop housing projects and plotted developments that meet the evolving needs of modern buyers and investors.
+            Founded on <strong>30 Jun 2016</strong>, the company is led by <strong>Nikesh S. Hatwar (Founder)</strong>
+            and <strong>Pranali Nikesh Hatwar (Director)</strong>.
+          </p>
+
+          <ul class="about-points">
+            <li><i class="bi bi-shield-check"></i>Transparent process with legal clarity</li>
+            <li><i class="bi bi-house-check"></i>Quality construction and planned communities</li>
+            <li><i class="bi bi-graph-up-arrow"></i>Strong long-term growth potential</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-5 scroll-animate-right">
+        <div class="about-highlight">
+          <h5>Why Choose Aashray Infra</h5>
+          <p>
+            Driven by market insight and ethical practices, Aashray Infra is committed to creating spaces that offer
+            security, comfort, and future value—making property ownership simple, safe, and reliable.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<!-- Services -->
+<section class="section fade-section" id="services">
+  <div class="container">
+    <h2 class="section-heading section-heading-center">Our Services</h2>
+    <p class="text-center mb-5">We provide complete real estate and infrastructure solutions</p>
+
+    <div class="row g-4">
+
+      <!-- Service 1 -->
+      <div class="col-md-6 col-lg-4 scroll-animate">
+        <div class="service-card p-4 h-100">
+          <div class="service-icon icon-blue"><i class="bi bi-house-heart"></i></div>
+          <h5 class="service-title">Residential Project Development</h5>
+          <p class="service-text">
+            We develop thoughtfully planned residential projects that combine location advantage,
+            modern amenities, and quality construction. Designed for comfortable living and long-term value.
+          </p>
+        </div>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="col-md-6 col-lg-4 scroll-animate">
+        <div class="service-card p-4 h-100">
+          <div class="service-icon icon-gold"><i class="bi bi-map"></i></div>
+          <h5 class="service-title">Residential Plot Sales</h5>
+          <p class="service-text">
+            Legally clear, well-demarcated residential plots in prime locations. Ideal for home construction
+            or investment with strong growth potential.
+          </p>
+        </div>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="col-md-6 col-lg-4 scroll-animate">
+        <div class="service-card p-4 h-100">
+          <div class="service-icon icon-green"><i class="bi bi-building"></i></div>
+          <h5 class="service-title">Commercial Property Development</h5>
+          <p class="service-text">
+            Strategically located commercial spaces for offices and retail. Designed for maximum visibility,
+            accessibility, and business growth.
+          </p>
+        </div>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="col-md-6 col-lg-6 scroll-animate">
+        <div class="service-card p-4 h-100">
+          <div class="service-icon icon-purple"><i class="bi bi-people"></i></div>
+          <h5 class="service-title">Property Consultation & Sales</h5>
+          <p class="service-text">
+            End-to-end guidance from site selection to final documentation. We ensure a smooth,
+            transparent, and hassle-free buying experience.
+          </p>
+        </div>
+      </div>
+
+      <!-- Service 5 -->
+      <div class="col-md-6 col-lg-6 scroll-animate">
+        <div class="service-card p-4 h-100">
+          <div class="service-icon icon-cyan"><i class="bi bi-graph-up-arrow"></i></div>
+          <h5 class="service-title">Investment Advisory</h5>
+          <p class="service-text">
+            Expert advice to maximize returns through smart property investments. We identify high-potential
+            opportunities based on market trends and future growth areas.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="section text-center fade-section" id="projects">
+  <div class="container">
+    <h2 class="section-heading section-heading-center">Our Projects</h2>
+    <p class="text-muted mt-2">Showcasing our finest real estate developments</p>
+
+    <div class="row g-4 mt-3">
+
+      <!-- Project 1 -->
+      <div class="col-md-6 col-lg-4 scroll-animate-zoom">
+        <div class="project-card">
+          <img src="Plot.jpeg" alt="Residential Building">
+          <div class="project-overlay"></div>
+          <div class="project-content">
+            <h5 class="project-title">Residential Plots</h5>
+            <p class="project-desc">Prime residential plots in well-planned community layouts.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="col-md-6 col-lg-4 scroll-animate-zoom">
+        <div class="project-card">
+          <img src="upcoming.jpg" alt="Commercial Complex">
+          <div class="project-overlay"></div>
+          <div class="project-content">
+            <h5 class="project-title">Upcoming Projects</h5>
+            <p class="project-desc">New commercial and residential spaces coming soon.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="col-md-6 col-lg-4 scroll-animate-zoom">
+        <div class="project-card">
+          <img src="complate.jpg" alt="Luxury Villas">
+          <div class="project-overlay"></div>
+          <div class="project-content">
+            <h5 class="project-title">Completed Projects</h5>
+            <p class="project-desc">Successfully delivered residential and commercial spaces.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="section text-center fade-section" id="gallery">
+  <div class="container">
+    <h2 class="section-heading section-heading-center">Gallery</h2>
+
+    <div class="row mt-4 gallery">
+      <div class="col-md-4 mb-3 scroll-animate-zoom"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e"></div>
+      <div class="col-md-4 mb-3 scroll-animate-zoom"><img src="H4.jpeg"></div>
+      <div class="col-md-4 mb-3 scroll-animate-zoom"><img src="H5.jpeg"></div>
+      <div class="col-md-4 mb-3 scroll-animate-zoom"><img src="H9.jpeg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Customer Reviews -->
+<section class="section fade-section" id="reviews">
+  <div class="container">
+    <h2 class="section-heading section-heading-center">Customer Reviews</h2>
+    <p class="text-center text-muted mt-2">What our buyers and investors say about Aashray Infra</p>
+
+    <div class="row g-4 mt-3">
+      <div class="col-md-6 col-lg-4 scroll-animate">
+        <div class="review-card">
+          <div class="review-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <p class="review-text">The team guided us from site visit to final documentation with complete transparency. We are very happy with our plot purchase experience.</p>
+          <h6 class="review-name">Rohit Meshram</h6>
+          <p class="review-role">Residential Buyer</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 scroll-animate">
+        <div class="review-card">
+          <div class="review-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <p class="review-text">Excellent planning, prime location options, and clear legal process. Aashray Infra is a trusted name for long-term property investment.</p>
+          <h6 class="review-name">Sneha Tiwari</h6>
+          <p class="review-role">Property Investor</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 scroll-animate">
+        <div class="review-card">
+          <div class="review-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div>
+          <p class="review-text">Professional support, timely updates, and smooth communication throughout. Their service quality and commitment are truly dependable.</p>
+          <h6 class="review-name">Amit Borkar</h6>
+          <p class="review-role">Commercial Client</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal fade" id="galleryPreviewModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header border-0 pb-0">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body pt-0 text-center">
+        <img id="galleryPreviewImage" class="gallery-modal-image" src="" alt="Gallery preview">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="section fade-section" id="faq">
+  <div class="container">
+    <h2 class="section-heading section-heading-center">FAQ</h2>
+    <p class="text-center text-muted mt-2">Common questions from home buyers and investors</p>
+
+    <div class="faq-wrap mt-4">
+      <div class="accordion" id="faqAccordion">
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqOneHeading">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="true" aria-controls="faqOne">
+              1. Are your projects RERA registered?
+            </button>
+          </h2>
+          <div id="faqOne" class="accordion-collapse collapse show" aria-labelledby="faqOneHeading" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes. Aashray Infra follows regulatory compliance and our RERA number is <strong>A50500037497</strong>. We ensure transparent documentation and legal clarity for every buyer.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqTwoHeading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
+              2. What types of properties do you offer?
+            </button>
+          </h2>
+          <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeading" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              We offer residential projects, residential plots, and commercial property developments. Options are available for both end-use buyers and long-term investors.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqThreeHeading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree" aria-expanded="false" aria-controls="faqThree">
+              3. Do you provide assistance with documentation?
+            </button>
+          </h2>
+          <div id="faqThree" class="accordion-collapse collapse" aria-labelledby="faqThreeHeading" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Absolutely. Our team supports you from property selection to agreement, verification, and final documentation so that the purchase process remains smooth and stress-free.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqFourHeading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour" aria-expanded="false" aria-controls="faqFour">
+              4. Is this a good time to invest in Nagpur real estate?
+            </button>
+          </h2>
+          <div id="faqFour" class="accordion-collapse collapse" aria-labelledby="faqFourHeading" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Nagpur is seeing steady infrastructure growth and demand in key zones. We guide you with market insights to help choose properties with strong future appreciation potential.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqFiveHeading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFive" aria-expanded="false" aria-controls="faqFive">
+              5. How can I schedule a site visit?
+            </button>
+          </h2>
+          <div id="faqFive" class="accordion-collapse collapse" aria-labelledby="faqFiveHeading" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              You can call us, send a WhatsApp message, or fill out the contact form. Our team will coordinate a convenient site visit and share complete project details.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section fade-section" id="contact">
+  <div class="container">
+    <h2 class="section-heading section-heading-center">Contact Us</h2>
+    <p class="text-center text-muted mt-2">We are here to help you find the right property with confidence.</p>
+
+    <div class="row mt-5">
+      <div class="col-md-6">
+        <div class="contact-box">
+          <h5 class="contact-title">Get in Touch</h5>
+
+          <div class="contact-item">
+            <i class="bi bi-telephone-fill"></i>
+            <div>
+              <strong>Call Us</strong><br>
+              <a href="tel:+918390700030" class="text-decoration-none">+91 83907 00030</a>
+              <br>
+              <a href="tel:+917507470077" class="text-decoration-none">+91 75074 70077</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <i class="bi bi-envelope-fill"></i>
+            <div>
+              <strong>Email Us</strong><br>
+              <a href="mailto:aashraygroup0077@gmail.com" class="text-decoration-none">aashraygroup0077@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <i class="bi bi-geo-alt-fill"></i>
+            <div>
+              <strong>Visit Office</strong><br>
+              Revati Nagar, Near Kalode College, Omkar Nagar Road, Nagpur 440027
+            </div>
+          </div>
+
+
+          <div class="contact-map">
+            <iframe
+              src="https://www.google.com/maps?q=Revati+Nagar,+Near+Kalode+College,+Omkar+Nagar+Road,+Nagpur+440027&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Aashray Infra Location Map"
+              aria-label="Aashray Infra Location Map"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="contact-box">
+          <h5 class="contact-title">Send a Quick Inquiry</h5>
+          <form>
+            <input class="form-control mb-3" placeholder="Your Name">
+            <input class="form-control mb-3" placeholder="Mobile">
+            <input class="form-control mb-3" placeholder="Email Address">
+            <textarea class="form-control mb-3" rows="5" placeholder="Message"></textarea>
+            <button class="btn btn-main w-100">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  
+  <div class="rera-badge">
+    <span class="rera-label">RERA CERTIFIED</span>
+    A50500037497
+  </div>
+  <div class="footer-social">
+    <a href="https://www.facebook.com/aashraygroup0077" target="_blank" rel="noopener noreferrer" class="social-facebook" aria-label="Facebook" title="Facebook">
+      <i class="bi bi-facebook"></i>
+    </a>
+    <a href="https://www.instagram.com/aashraygroupngp/" target="_blank" rel="noopener noreferrer" class="social-instagram" aria-label="Instagram" title="Instagram">
+      <i class="bi bi-instagram"></i>
+    </a>
+    <a href="https://www.aashraygroupnagpur.com/" target="_blank" rel="noopener noreferrer" class="social-web" aria-label="Website" title="Website">
+      <i class="bi bi-globe2"></i>
+    </a>
+  </div>
+  <p style="margin-top: 20px;">© 2026 Aashray Infra | All Rights Reserved</p>
+</footer>
+
+<a
+  href="tel:+918390700030"
+  class="floating-call"
+  aria-label="Call now"
+  title="Call now"
+>
+  <i class="bi bi-telephone-fill"></i>
+</a>
+
+<a
+  href="https://wa.me/918390700030?text=Hi%20Aashray%20Infra,%20I%20want%20more%20details%20about%20your%20properties.%20Please%20contact%20me."
+  class="floating-whatsapp"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Chat on WhatsApp"
+  title="Chat on WhatsApp"
+>
+  <i class="bi bi-whatsapp"></i>
+</a>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+  <i class="bi bi-arrow-up"></i>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+      // Scroll animation for elements
+      function scrollRevealElements() {
+        var els = document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-zoom');
+        var windowHeight = window.innerHeight;
+        els.forEach(function(el) {
+          var rect = el.getBoundingClientRect();
+          if (rect.top < windowHeight - 60) {
+            el.classList.add('visible');
+          }
+        });
+      }
+      window.addEventListener('scroll', scrollRevealElements, { passive: true });
+      setTimeout(scrollRevealElements, 300);
+    // Animated Counter
+    function animateCounters() {
+      var counters = document.querySelectorAll('.stat-number');
+      counters.forEach(function(counter) {
+        var updateCount = function() {
+          var target = +counter.getAttribute('data-count');
+          var count = +counter.innerText.replace(/\D/g, '');
+          var increment = Math.ceil(target / 60);
+          if (count < target) {
+            counter.innerText = count + increment;
+            setTimeout(updateCount, 24);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        // Only animate if not already done
+        if (!counter.classList.contains('counted')) {
+          counter.classList.add('counted');
+          updateCount();
+        }
+      });
+    }
+
+    // Trigger counter animation when stats section is visible
+    function handleStatsOnScroll() {
+      var statsSection = document.querySelector('.stats-section');
+      if (!statsSection) return;
+      var rect = statsSection.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 80) {
+        animateCounters();
+        window.removeEventListener('scroll', handleStatsOnScroll);
+      }
+    }
+    window.addEventListener('scroll', handleStatsOnScroll, { passive: true });
+    setTimeout(handleStatsOnScroll, 400);
+  window.addEventListener('load', function () {
+    if (window.innerWidth <= 991 && window.location.hash === '#contact') {
+      window.location.hash = '#home';
+    }
+
+    // Fade-in on scroll for sections
+    function revealSections() {
+      var sections = document.querySelectorAll('.fade-section');
+      var headings = document.querySelectorAll('.section-heading');
+      var windowHeight = window.innerHeight;
+      sections.forEach(function(section) {
+        var rect = section.getBoundingClientRect();
+        if (rect.top < windowHeight - 80) {
+          section.classList.add('visible');
+        }
+      });
+      headings.forEach(function(heading) {
+        var rect = heading.getBoundingClientRect();
+        if (rect.top < windowHeight - 80) {
+          heading.classList.add('visible');
+        }
+      });
+      // Gallery images fade-in
+      var galleryImgs = document.querySelectorAll('.gallery img');
+      galleryImgs.forEach(function(img) {
+        var rect = img.getBoundingClientRect();
+        if (rect.top < windowHeight - 60) {
+          img.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealSections, { passive: true });
+    setTimeout(revealSections, 200); // Initial fade-in
+  });
+
+  window.addEventListener('scroll', function () {
+    if (window.innerWidth <= 991) {
+      return;
+    }
+
+    if (window.scrollY > 15) {
+      document.body.classList.add('topbar-hidden');
+    } else {
+      document.body.classList.remove('topbar-hidden');
+    }
+  }, { passive: true });
+
+  const navbarCollapse = document.getElementById('menu');
+  const navbarLinks = document.querySelectorAll('#menu .nav-link');
+
+  navbarLinks.forEach(function (link) {
+    link.addEventListener('click', function () {
+      if (window.innerWidth <= 991 && navbarCollapse.classList.contains('show')) {
+        bootstrap.Collapse.getOrCreateInstance(navbarCollapse).hide();
+      }
+    });
+  });
+
+  const galleryImages = document.querySelectorAll('#gallery .gallery img');
+  const galleryPreviewModal = document.getElementById('galleryPreviewModal');
+  const galleryPreviewImage = document.getElementById('galleryPreviewImage');
+
+  if (galleryPreviewModal && galleryPreviewImage && galleryImages.length) {
+    const galleryModalInstance = new bootstrap.Modal(galleryPreviewModal);
+
+    galleryImages.forEach(function (image) {
+      image.addEventListener('click', function () {
+        galleryPreviewImage.src = image.src;
+        galleryPreviewImage.alt = image.alt || 'Gallery image preview';
+        galleryModalInstance.show();
+      });
+    });
+  }
+
+  const scrollProgress = document.getElementById('scrollProgress');
+  const backToTopBtn = document.getElementById('backToTop');
+
+  function updateScrollUi() {
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var scrollPercent = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+
+    if (scrollProgress) {
+      scrollProgress.style.width = scrollPercent + '%';
+    }
+
+    if (backToTopBtn) {
+      if (window.scrollY > 260) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', updateScrollUi, { passive: true });
+  window.addEventListener('load', updateScrollUi);
+
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+</script>
+
+</body>
+</html>
