@@ -1973,13 +1973,46 @@
       <div class="col-md-6">
         <div class="contact-box">
           <h5 class="contact-title">Send a Quick Inquiry</h5>
-          <form>
-            <input class="form-control mb-3" placeholder="Your Name">
-            <input class="form-control mb-3" placeholder="Mobile">
-            <input class="form-control mb-3" placeholder="Email Address">
-            <textarea class="form-control mb-3" rows="5" placeholder="Message"></textarea>
-            <button class="btn btn-main w-100">Send Message</button>
-          </form>
+         <form action="https://formsubmit.co/kurhepatil012@gmail.com" method="POST">
+
+    <!-- Name -->
+    <input type="text" name="name" class="form-control mb-3"
+    placeholder="Your Name"
+    pattern="[A-Za-z ]{3,}"
+    title="Enter at least 3 letters"
+    required>
+
+    <!-- Mobile -->
+    <input type="tel" name="mobile" class="form-control mb-3"
+    placeholder="Mobile"
+    pattern="[6-9]{1}[0-9]{9}"
+    maxlength="10"
+    title="Enter valid 10 digit mobile number"
+    required>
+
+    <!-- Email -->
+    <input type="email" name="email" class="form-control mb-3"
+    placeholder="Email Address"
+    required>
+
+    <!-- Message -->
+    <textarea name="message" class="form-control mb-3"
+    rows="5"
+    placeholder="Message"
+    minlength="10"
+    required></textarea>
+
+    <!-- Hidden Fields -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="New Contact Message">
+    <input type="hidden" name="_template" value="table">
+
+    <!-- Optional redirect -->
+    <input type="hidden" name="_next" value="https://aashraygroupnagpur.com//thanks.html">
+
+    <button type="submit" class="btn btn-main w-100">Send Message</button>
+
+</form>
         </div>
       </div>
     </div>
